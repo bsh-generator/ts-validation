@@ -327,7 +327,7 @@ export class Validator<
           validatorItem.valid = it.valid
           validatorItem.message = it.message
           // TODO: add these logs to separate file to let the code source clean
-          if (this.#getter == undefined) this.#warn(`if the value of '${it.field}' was changed, the new value will be ignored! to avoid behavior, please use the '.init()' method to pass the object to set the changes to`)
+          if (this.#getter == undefined) this.#warn(`if the value of '${it.field}' value is modified, the change will be ignored unless the \`.init()\` method is used. To ensure the update is applied, please use \`.init()\` to apply the changes correctly.`)
           else validatorItem.set(it.value)
         }
       })

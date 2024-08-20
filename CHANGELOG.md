@@ -3,6 +3,10 @@
 
 ## Previous Releases
 
+### 0.5.3
+
+- address the issue with import and fix it [#1](https://github.com/bsh-generator/bshg_validation_ts/issues/1)
+
 ### 0.5.0
 
 - add `onChange()` method to be executed when the validator status changes
