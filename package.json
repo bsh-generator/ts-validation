@@ -25,7 +25,6 @@
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
     "play": "nodemon -e ts -w . -x tsx playground.ts"
   },
-  "private": true,
   "keywords": [
     "ts",
     "ts-validation",
