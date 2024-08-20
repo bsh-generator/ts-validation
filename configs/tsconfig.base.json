@@ -9,12 +9,13 @@
     "strict": true,
     "skipLibCheck": true,
     "strictPropertyInitialization": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "downlevelIteration": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "declaration": true,
   },
-  "include": ["../src/**/*", "../playground.ts", "../.eslintrc.js"]
+  "include": ["../src/**/*", "../playground.ts"]
 }

@@ -6,23 +6,25 @@
   "module": "./lib/index.mjs",
   "types": "./index.d.ts",
   "devDependencies": {
-    "@jest/globals": "^29.4.3",
-    "@rollup/plugin-typescript": "^8.2.0",
+    "@jest/globals": "^29.7.0",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@types/jest": "^29.2.2",
-    "@types/node": "14",
-    "rollup": "^2.70.1",
-    "ts-jest": "^29.1.0",
+    "@types/node": "^22.4.1",
+    "nodemon": "^3.1.4",
+    "rollup": "^4.21.0",
+    "ts-jest": "^29.2.4",
     "ts-node": "^10.9.1",
-    "tslib": "^2.3.1",
-    "typescript": "~4.5.5"
+    "tslib": "^2.6.3",
+    "tsx": "^3.14.0",
+    "typescript": "^5.5.4"
   },
   "scripts": {
-    "clean": "rm -rf lib/* deno/lib/*",
-    "build": "yarn run clean && npm run build:cjs && npm run build:esm && npm run build:deno",
-    "build:deno": "node ./deno-build.mjs && cp ./README.md ./deno/lib",
-    "build:esm": "rollup --config ./configs/rollup.config.js",
+    "clean": "rm -rf lib/*",
+    "build": "yarn run clean && npm run build:cjs && npm run build:esm && npm",
+    "build:esm": "rollup --config configs/rollup.config.mjs",
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
-    "build:types": "tsc -p ./configs/tsconfig.types.json"
+    "build:types": "tsc -p ./configs/tsconfig.types.json",
+    "play": "nodemon -e ts -w . -x tsx playground.ts"
   },
   "private": true,
   "keywords": [

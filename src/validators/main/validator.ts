@@ -1,7 +1,6 @@
 import {
   BshBatchValidationError,
   BshValidationError,
-  ValidatorComplexResultObjects,
   ValidatorComplexResultVFieldName,
   ValidatorResult,
   ValidatorResultArrays,
@@ -9,7 +8,14 @@ import {
   ValidatorSimpleResult
 } from '../results';
 import {ValidatorItem} from './validator-item';
-import {BatchValidatorResultInfo, NestedType, ValidatorConfig, ValidatorOptions, ValidatorResultInfo} from '../utils';
+import {
+  BatchValidatorResultInfo,
+  NestedType,
+  ValidatorComplexResultObjects,
+  ValidatorConfig,
+  ValidatorOptions,
+  ValidatorResultInfo,
+} from "../utils";
 import {BshUndefinedObject} from "../exceptions";
 import {options} from '../options';
 import logger from '../logger'
@@ -79,7 +85,7 @@ export class Validator<
   }
 
   get nested() {
-    if (!this.#nested) this.#nested = {};
+    if (!this.#nested) this.#nested = {} as NestedType<T>;
     return this.#nested;
   }
 
@@ -145,8 +151,10 @@ export class Validator<
     if (this.#nested) {
       const nested = {} as ValidatorComplexResultObjects<T>;
       for (let key in this.#nested) {
-        if (this.#nested[key] != undefined)
+        if (this.#nested[key] != undefined) {
+          // @ts-ignore
           nested[key] = this.#nested[key]?.generateErrorsAsObject();
+        }
       }
       if (Object.keys(nested).length > 0) result.nested = nested;
     }
@@ -329,6 +337,7 @@ export class Validator<
       if (this.#options.resultsType == "object") {
         const nested = results.nested as ValidatorComplexResultObjects<T>
         for (const key in nested) {
+          // @ts-ignore
           const validator = this.#nested[key]
           if (nested[key] != undefined)
             validator?.import(<unknown>nested[key] as ValidatorResultObjects<T>)

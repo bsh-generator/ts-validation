@@ -1,4 +1,4 @@
-// rollup.config.js
+// rollup.config.mjs
 import typescript from "@rollup/plugin-typescript";
 
 export default [
@@ -11,13 +11,13 @@ export default [
         sourcemap: false,
         exports: "named",
       },
-      {
-        file: "lib/index.umd.js",
-        name: "bshg",
-        format: "umd",
-        sourcemap: false,
-        exports: "named",
-      },
+      // {
+      //   file: "lib/index.umd.js",
+      //   name: "bshg",
+      //   format: "umd",
+      //   sourcemap: false,
+      //   exports: "named",
+      // },
     ],
     plugins: [
       typescript({

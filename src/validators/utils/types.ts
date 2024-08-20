@@ -1,6 +1,6 @@
 import {Validator, ValidatorTemplate} from '../main';
 import {TypeValidator} from '../validators-fn';
-import {ValidatorResult} from "../results";
+import { ValidatorResult, ValidatorResultObjects } from "../results";
 import {TypeValidatorWithContext} from "../validators-fn/base";
 
 export type BaseValidatorFnConfig<TError = any> = {
@@ -44,26 +44,25 @@ export type ItemType<T, TContext extends Record<string, any>> = {
   [K in keyof T]?: TypeValidator<T[K]> | TypeValidatorWithContext<T[K], TContext>[]
 }
 
-export type NestedType<T extends Record<string, any>> = {
-  [k in keyof T as T[k] extends SimpleType
-    ? never
-    : T[k] extends infer U | undefined
-      ? U extends SimpleType
-        ? never
-        : k
-      : k]?: Validator<T[k], any>;
-}
+// Utility type to filter out simple types
+type NonSimpleKeys<T> = { [K in keyof T]: T[K] extends SimpleType ? never : K; }[keyof T];
+// Utility type to get values of non-simple types
+type NonSimpleValues<T> = { [K in NonSimpleKeys<T>]: T[K]; };
 
-export type TemplateNestedType<T extends Record<string, any>, TContext extends Record<string, any>> = {
-  [k in keyof T as T[k] extends SimpleType
-    ? never
-    : T[k] extends (infer U) | undefined
-      ? U extends SimpleType
-        ? never
-        : k
-      : k]?: ValidatorTemplate<T[k], TContext>
-}
+export type NestedType<T extends Record<string, any>> = NonSimpleValues<T> extends {
+  [K in keyof NonSimpleValues<T>]: Validator<NonSimpleValues<T>[K]>;
+} ? { [K in NonSimpleKeys<T>]?: Validator<NonSimpleValues<T>[K]> } : never;
 
+export type TemplateNestedType<T extends Record<string, any>, TContext extends Record<string, any>> = NonSimpleValues<T> extends {
+  [K in keyof NonSimpleValues<T>]: ValidatorTemplate<NonSimpleValues<T>[K], TContext>;
+} ? { [K in NonSimpleKeys<T>]?: ValidatorTemplate<NonSimpleValues<T>[K], TContext> } : never;
+
+export type ValidatorComplexResultObjects<TV> = NonSimpleValues<TV> extends {
+  [K in keyof NonSimpleValues<TV>]: ValidatorResultObjects<NonSimpleValues<TV>[K]>;
+} ? { [K in NonSimpleKeys<TV>]?: ValidatorResultObjects<NonSimpleValues<TV>[K]> } : never;
+
+
+////
 export type ValidatorConfig<TV extends Record<string, any>, TContext extends Record<string, any>> = {
   id?: string,
   items?: ItemType<TV, TContext>,

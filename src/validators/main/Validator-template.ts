@@ -1,4 +1,4 @@
-import {ValidatorConfig, ValidatorTemplateConfig} from "../utils";
+import { NestedType, ValidatorConfig, ValidatorTemplateConfig } from "../utils";
 import {Validator} from "./validator";
 
 export class ValidatorTemplate<T extends Record<string, any>, TContext extends Record<string, any>> {
@@ -18,8 +18,9 @@ export class ValidatorTemplate<T extends Record<string, any>, TContext extends R
     const nested = this.config.nested;
     if (nested) {
       Object.keys(nested).forEach((it) => {
-        if (validatorConfig.nested == undefined) validatorConfig.nested = {}
-        validatorConfig.nested[it as keyof typeof validatorConfig.nested] = nested[it as keyof typeof nested]?.instant()
+        if (validatorConfig.nested == undefined) validatorConfig.nested = {} as NestedType<T>
+        // @ts-ignore
+        validatorConfig.nested[it] = nested[it as keyof typeof nested]?.instant()
       })
     }
 

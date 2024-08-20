@@ -1,4 +1,4 @@
-import {SimpleType} from "../utils";
+import { SimpleType, ValidatorComplexResultObjects } from "../utils";
 
 export type ValidatorResult<TV = any> = ValidatorResultObjects<TV> | ValidatorResultArrays
 
@@ -18,16 +18,6 @@ export type ValidatorSimpleResult<T = any> = {
   value?: T
   valid?: boolean
   message?: string
-}
-
-export type ValidatorComplexResultObjects<TV> = {
-  [k in keyof TV as TV[k] extends SimpleType
-    ? never
-    : TV[k] extends (infer U) | undefined
-      ? U extends SimpleType
-        ? never
-        : k
-      : k]?: ValidatorResultObjects<TV[k]>
 }
 
 //////////////////////
