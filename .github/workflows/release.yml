@@ -24,21 +24,14 @@ jobs:
         with:
           node-version: 20
 
-      - name: Change directory to core
-        working-directory: core
-        run: echo "Changed directory to core"
-
       - name: Install dependencies
-        working-directory: core
         run: npm install
 
       # Uncomment to run tests
       # - name: Run tests
-      #   working-directory: core
       #   run: npm test
 
       - name: Build project
-        working-directory: core
         run: npm run build
 
       - id: publish
@@ -46,6 +39,5 @@ jobs:
         uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          package: core
           dry-run: false
           provenance: true
