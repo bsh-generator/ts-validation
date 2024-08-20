@@ -1,7 +1,7 @@
 {
   "name": "@bshg/validation",
   "version": "0.5.1",
-  "description": "",
+  "description": "Validation Library for TypeScript projects",
   "main": "./lib/index.js",
   "module": "./lib/index.mjs",
   "types": "./index.d.ts",
