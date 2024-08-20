@@ -20,10 +20,9 @@
   },
   "scripts": {
     "clean": "rm -rf lib/*",
-    "build": "yarn run clean && npm run build:cjs && npm run build:esm && npm",
+    "build": "yarn run clean && npm run build:cjs && npm run build:esm",
     "build:esm": "rollup --config configs/rollup.config.mjs",
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
-    "build:types": "tsc -p ./configs/tsconfig.types.json",
     "play": "nodemon -e ts -w . -x tsx playground.ts"
   },
   "private": true,
