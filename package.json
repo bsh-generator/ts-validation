@@ -23,7 +23,8 @@
     "build": "yarn run clean && npm run build:cjs && npm run build:esm",
     "build:esm": "rollup --config configs/rollup.config.mjs",
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
-    "play": "nodemon -e ts -w . -x tsx playground.ts"
+    "play": "nodemon -e ts -w . -x tsx playground.ts",
+    "debug": "nodemon --inspect-brk -e ts -w . -x tsx playground.ts"
   },
   "keywords": [
     "ts",

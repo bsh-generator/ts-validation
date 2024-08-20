@@ -326,7 +326,9 @@ export class Validator<
         } else {
           validatorItem.valid = it.valid
           validatorItem.message = it.message
-          validatorItem.set(it.value)
+          // TODO: add these logs to separate file to let the code source clean
+          if (this.#getter == undefined) this.#warn(`if the value of '${it.field}' was changed, the new value will be ignored! to avoid behavior, please use the '.init()' method to pass the object to set the changes to`)
+          else validatorItem.set(it.value)
         }
       })
     } else if (results.items) {
@@ -371,14 +373,14 @@ export class Validator<
   ///////////// LOGGERS /////////////////////////////
   ///////////////////////////////////////////////////
   #info(...data: any[]) {
-    logger.info(this.#id, this.#options.dev || false, data)
+    logger.info(this.#id, this.#options.dev || false, ...data)
   }
 
   #warn(...data: any[]) {
-    logger.warn(this.#id, this.#options.dev || false, data)
+    logger.warn(this.#id, this.#options.dev || false, ...data)
   }
 
   #error(...data: any[]) {
-    logger.error(this.#id, this.#options.dev || false, data)
+    logger.error(this.#id, true, ...data)
   }
 }
