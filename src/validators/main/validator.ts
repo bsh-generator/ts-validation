@@ -16,7 +16,6 @@ import {
   ValidatorOptions,
   ValidatorResultInfo,
 } from "../utils";
-import {BshUndefinedObject} from "../exceptions";
 import {options} from '../options';
 import logger from '../logger'
 
@@ -210,7 +209,9 @@ export class Validator<
     this.#ready()
     const validators = [this, ...(Object.values(this.nested) as Validator<any, any>[])];
     validators.forEach((it) => {
-      if (it.#getter() == undefined) throw new BshUndefinedObject(it.#id)
+      if (it.#getter() == undefined) {
+        this.#warn(`Object of validator '${it.#id}' is not defined!`)
+      }
       it.applyAll()
     });
     const isValid = validators.every((it) => it.allGood());
@@ -229,7 +230,9 @@ export class Validator<
     const validators = [this, ...(Object.values(this.nested) as Validator<any, any>[]),];
     await Promise.all(
       validators.map(async it => {
-        if (it.#getter() == undefined) throw new BshUndefinedObject(it.#id)
+        if (it.#getter() == undefined) {
+          this.#warn(`Object of validator '${it.#id}' is not defined!`)
+        }
         await it.applyAllAsync()
       })
     )
