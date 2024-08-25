@@ -18,6 +18,7 @@ import {
 } from "../utils";
 import {options} from '../options';
 import logger from '../logger'
+import { BshgError } from "../exceptions";
 
 type ValidatorItemsType<T extends Record<string, any>> = { [K in keyof T]?: ValidatorItem<T[K], T> }
 
@@ -34,8 +35,8 @@ export class Validator<
   onChangeEvent?: (obj: T) => void
 
   config(config: ValidatorConfig<T, TContext>): this {
-    if (this.#getter != undefined && this.#getter() == undefined) throw new Error(
-      `${this.#id}: The Object is undefined! We can not create a validator for undefined object.`
+    if (this.#getter != undefined && this.#getter() == undefined) throw new BshgError(
+      this.#id, `The Object is undefined! We can not create a validator for undefined object.`
     );
 
     if (config.id) this.#id = config.id
@@ -49,7 +50,7 @@ export class Validator<
         item.get = () => this.#getter()[key];
         item.set = (value) => (this.#getter()[key] = value);
         item.name = key;
-        item.validations = config.items[key];
+        item.setValidations(config.items[key]);
         item.validator = this
         fields[key as keyof T] = item;
       }
@@ -70,8 +71,8 @@ export class Validator<
   }
 
   #ready() {
-    if (this.#getter == undefined) throw new Error(
-      `${this.#id}: The Validator Is Not Ready! getter function is messaging. use .init(getter: () -> T) function to achieve that.`
+    if (this.#getter == undefined) throw new BshgError(
+      this.#id, `The Validator Is Not Ready! getter function is messing. use .init(getter: () -> T) function to achieve that.`
     );
   }
 
@@ -210,13 +211,14 @@ export class Validator<
     const validators = [this, ...(Object.values(this.nested) as Validator<any, any>[])];
     validators.forEach((it) => {
       if (it.#getter() == undefined) {
-        this.#warn(`Object of validator '${it.#id}' is not defined!`)
+        this.#warn(`Object of validator '${it.#id}' is undefined!`)
+        return;
       }
       it.applyAll()
     });
     const isValid = validators.every((it) => it.allGood());
 
-    this.#info(`validation result ${this.#id ? `of ${this.#id}` : ''}: `, isValid);
+    this.#info(`validation result `, isValid);
 
     return isValid;
   }
