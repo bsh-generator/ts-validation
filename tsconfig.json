@@ -2,6 +2,9 @@
   "extends": "./configs/tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../lib",
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "paths": {
+      "@bshg/validation": ["./src"]
+    }
   }
 }

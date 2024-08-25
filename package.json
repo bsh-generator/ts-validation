@@ -8,11 +8,12 @@
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@types/jest": "^29.2.2",
+    "@types/jest": "^29.5.12",
     "@types/node": "^22.4.1",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.4",
     "rollup": "^4.21.0",
-    "ts-jest": "^29.2.4",
+    "ts-jest": "^29.2.5",
     "ts-node": "^10.9.1",
     "tslib": "^2.6.3",
     "tsx": "^3.14.0",
@@ -23,7 +24,8 @@
     "build": "yarn run clean && npm run build:cjs && npm run build:esm",
     "build:esm": "rollup --config configs/rollup.config.mjs",
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
-    "play": "nodemon -e ts -w . -x tsx playground.ts"
+    "play": "nodemon -e ts -w . -x tsx playground.ts",
+    "test": "jest"
   },
   "keywords": [
     "ts",
@@ -36,7 +38,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bsh-generator/bshg_validation_ts.git",
-    "directory": "core"
   },
   "license": "MIT",
   "publishConfig": {
