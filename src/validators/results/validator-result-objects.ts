@@ -1,4 +1,4 @@
-import { SimpleType, ValidatorComplexResultObjects } from "../utils";
+import { Primitive, ValidatorComplexResultObjects } from "../utils";
 
 export type ValidatorResult<TV extends Record<string, any> = any> = ValidatorResultObjects<TV> | ValidatorResultArrays
 
