@@ -3,7 +3,12 @@
 
 ## Previous Releases
 
-### 0.5.3
+### 0.5.6
+
+- start using tests in the library
+- Simplify Access to Validation Status and Messages [#2](https://github.com/bsh-generator/bshg_validation_ts/issues/2)
+
+### 0.5.5
 
 - address the issue with import and fix it [#1](https://github.com/bsh-generator/bshg_validation_ts/issues/1)
 
