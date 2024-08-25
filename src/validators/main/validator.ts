@@ -30,7 +30,7 @@ export class Validator<
   #options: ValidatorOptions = options;
   #getter!: () => T;
   #items?: ValidatorItemsType<T>;
-  #nested?: NestedType<T>
+  #nested?: NestedType<T, TContext>
   context?: TContext
   onChangeEvent?: (obj: T) => void
 
@@ -85,7 +85,7 @@ export class Validator<
   }
 
   get nested() {
-    if (!this.#nested) this.#nested = {} as NestedType<T>;
+    if (!this.#nested) this.#nested = {} as NestedType<T, TContext>;
     return this.#nested;
   }
 
@@ -347,7 +347,7 @@ export class Validator<
       } else {
         const nested = results.nested as ValidatorComplexResultVFieldName[]
         nested.forEach(it => {
-          const validator = this.#nested != undefined ? ((this.#nested)[it.field as keyof NestedType<T>]) as Validator<any, any> : undefined
+          const validator = this.#nested != undefined ? ((this.#nested)[it.field as keyof NestedType<T, TContext>]) as Validator<any, any> : undefined
           if (validator == undefined) {
             this.#warn(`${it.field} is unknown nested validator in ${this.#id}!\nIt Will be ignored!`)
           } else {

@@ -18,7 +18,7 @@ export class ValidatorTemplate<T extends Record<string, any>, TContext extends R
     const nested = this.config.nested;
     if (nested) {
       Object.keys(nested).forEach((it) => {
-        if (validatorConfig.nested == undefined) validatorConfig.nested = {} as NestedType<T>
+        if (validatorConfig.nested == undefined) validatorConfig.nested = {} as NestedType<T, TContext>
         // @ts-ignore
         validatorConfig.nested[it] = nested[it as keyof typeof nested]?.instant()
       })

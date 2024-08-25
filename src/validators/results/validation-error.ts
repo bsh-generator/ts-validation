@@ -1,7 +1,7 @@
 import {ValidatorResult} from "./validator-result-objects"
 import {ValidatorResultInfo} from "../utils";
 
-export class BshValidationError<TV = any> extends Error {
+export class BshValidationError<TV extends Record<string, any> = any> extends Error {
   readonly results: ValidatorResult<TV>
 
   constructor(results: ValidatorResult<TV>) {
