@@ -11,7 +11,7 @@ const userValidator = v.validator<User>({
       message: 'unexpected email',
     }),
     username: v.string().notEmpty().alphanumeric(),
-    profile: v.costume<Profile>().onError({
+    profile: v.custom<Profile>().onError({
       error: (value) => value.age < 18,
       message: 'too young',
     }).onError({
@@ -21,7 +21,7 @@ const userValidator = v.validator<User>({
   },
 });
 
-describe('User Validator', () => {
+export default () => {
   it('should validate a correct user', () => {
     const res = userValidator.validate({
       email: 'example@mail.com',
@@ -86,4 +86,4 @@ describe('User Validator', () => {
 
     expect(res).toBe(false);
   });
-});
+}
