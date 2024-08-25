@@ -373,15 +373,15 @@ export class Validator<
   ///////////////////////////////////////////////////
   ///////////// GET ITEM STATUS /////////////////////
   ///////////////////////////////////////////////////
-  validateItem(key: keyof T): void {
+  validateItem(key: keyof T): void { // TODO search foe better name
     this.items[key]?.validate()
   }
 
-  isItemValid(key: keyof T): boolean | undefined {
+  isItemValid(key: keyof T): boolean | undefined { // TODO search foe better name
     return this.items[key]?.valid
   }
 
-  itemMessage(key: keyof T): string | undefined {
+  itemMessage(key: keyof T): string | undefined { // TODO search foe better name
     return this.items[key]?.message
   }
 
