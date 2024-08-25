@@ -37,7 +37,7 @@
   "author": "Bouslaih Hamza <hamza.bousalih.bsh@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bsh-generator/bshg_validation_ts.git",
+    "url": "git+https://github.com/bsh-generator/bshg_validation_ts.git"
   },
   "license": "MIT",
   "publishConfig": {

@@ -1,15 +1,5 @@
 import { v } from '@bshg/validation';
-
-type Profile = {
-  name: string;
-  age: number;
-};
-
-type User = {
-  username: string;
-  email: string;
-  profile: Profile;
-};
+import { Profile, User } from "./types";
 
 const emails = ['example@mail.com'];
 
