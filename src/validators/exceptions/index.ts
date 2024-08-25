@@ -1,5 +1,14 @@
-export class BshUndefinedObject extends Error {
-  constructor(name: string) {
-    super(`Object of validator '${name}' is not defined!`);
+import { LOGGER } from "../logger";
+
+export class BshgError extends Error {
+  constructor(tag?: string, err?: string) {
+    super(err);
+    if (tag != undefined) LOGGER.error(tag, true, err)
+  }
+}
+
+export class ValidationFailedError extends BshgError {
+  constructor() {
+    super()
   }
 }

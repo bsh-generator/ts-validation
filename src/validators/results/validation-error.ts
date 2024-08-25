@@ -1,7 +1,8 @@
 import {ValidatorResult} from "./validator-result-objects"
 import {ValidatorResultInfo} from "../utils";
+import { BshgError } from "../exceptions";
 
-export class BshValidationError<TV = any> extends Error {
+export class BshValidationError<TV extends Record<string, any> = any> extends BshgError {
   readonly results: ValidatorResult<TV>
 
   constructor(results: ValidatorResult<TV>) {
@@ -10,7 +11,7 @@ export class BshValidationError<TV = any> extends Error {
   }
 }
 
-export class BshBatchValidationError extends Error {
+export class BshBatchValidationError extends BshgError {
   readonly results: ValidatorResultInfo[]
 
   constructor(results: ValidatorResultInfo[]) {

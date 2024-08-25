@@ -9,7 +9,7 @@ import {Arrays} from "./arrays";
 
 export {TypeValidator} from './base'
 
-export const costume = <T>(): TypeValidator<T> => {
+export const custom = <T>(): TypeValidator<T> => {
   return new TypeValidator<T>()
 }
 
