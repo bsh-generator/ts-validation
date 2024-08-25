@@ -1,13 +1,14 @@
 import {options} from "./options";
 import {Validator, ValidatorTemplate} from "./main";
 import {ValidatorConfig, ValidatorTemplateConfig} from "./utils";
+import { LOGGER } from "./logger";
 
 export const validator = <T extends Record<string, any>, TContext extends Record<string, any> = any>(config: ValidatorConfig<T, TContext>): Validator<T, TContext> => {
   const validator = new Validator<T, TContext>();
   const _options = {...options, ...config.options}
   validator.options(_options)
   validator.config(config)
-  if (_options?.dev) console.log(validator)
+  LOGGER.info('init', _options?.dev, validator)
   return validator
 }
 

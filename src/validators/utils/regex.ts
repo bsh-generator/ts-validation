@@ -1,3 +1,5 @@
+import { LOGGER } from "../logger";
+
 export const regex = {
   EMAIL: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   PHONE: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im,
@@ -25,7 +27,7 @@ export const updateRegex = (newRegex: Partial<RegexType>) => {
         if (newValue != undefined)
           regex[key as keyof RegexType] = newValue;
       } else {
-        console.warn(`Regex key '${key}' does not exist.`);
+        LOGGER.warn('updateRegex', true, `Regex key '${key}' does not exist.`);
       }
     }
   }
