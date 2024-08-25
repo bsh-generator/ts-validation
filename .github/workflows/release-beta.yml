@@ -48,3 +48,4 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
           dry-run: false
           provenance: true
+          tag: beta
