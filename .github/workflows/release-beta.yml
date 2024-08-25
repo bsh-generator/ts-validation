@@ -5,8 +5,7 @@ on:
     branches:
       - beta
     paths:
-      - package.json
-
+      - src/**
 jobs:
   release:
     runs-on: ubuntu-latest
