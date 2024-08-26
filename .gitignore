@@ -5,5 +5,6 @@ dist
 deno/lib
 .idea
 .vscode
-__*
 playground.ts
+todos
+___.txt

@@ -13,6 +13,7 @@ import {TypeValidator} from "../validators-fn";
 import {message, messageVars, TypeValidatorWithContext} from "../validators-fn/base";
 import {CurrentLocalize} from '../messages'
 import {Validator} from "./validator";
+import { ValidationFailedError } from "../exceptions";
 
 export class ValidatorItem<T, TC extends Record<string, any>> {
   valid: boolean | undefined;
@@ -35,7 +36,7 @@ export class ValidatorItem<T, TC extends Record<string, any>> {
 
   #validationsWithContext?: TypeValidatorWithContext<T, any>[]
 
-  set validations(value: TypeValidator<T> | TypeValidatorWithContext<T, any>[] | undefined) {
+  setValidations(value: TypeValidator<T> | TypeValidatorWithContext<T, any>[] | undefined) {
     if (value instanceof Array) {
       this.#validationsWithContext = value
     } else if (value) {
@@ -93,7 +94,8 @@ export class ValidatorItem<T, TC extends Record<string, any>> {
       this.#validationsDependCtx?.forEach(it => this.#doValidationsCtx(it))
       this.#doValidationsWithContext()
     } catch (e) {
-      return;
+      if (e instanceof ValidationFailedError) return;
+      throw e
     }
 
     this.markAsValid()
@@ -136,7 +138,7 @@ export class ValidatorItem<T, TC extends Record<string, any>> {
   ) {
     if (result) {
       this.markAsError(this.#getMessage(fn))
-      throw new Error()
+      throw new ValidationFailedError()
     }
   }
 

@@ -1,0 +1,50 @@
+name: Beta Release
+
+on:
+  push:
+    branches:
+      - beta
+    paths:
+      - src/**
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build project
+        run: npm run build
+
+      - name: Bump version and create beta prerelease
+        run: |
+          npm version prerelease --preid=beta --no-git-tag-version
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git commit -am "chore: bump version to $(jq -r .version < package.json)"
+          git push origin beta
+
+      - id: publish
+        name: Publish to NPM
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          dry-run: false
+          provenance: true
+          tag: beta

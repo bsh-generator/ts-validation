@@ -1,13 +1,13 @@
-import { SimpleType, ValidatorComplexResultObjects } from "../utils";
+import { ValidatorComplexResultObjects } from "../utils";
 
-export type ValidatorResult<TV = any> = ValidatorResultObjects<TV> | ValidatorResultArrays
+export type ValidatorResult<TV extends Record<string, any> = any> = ValidatorResultObjects<TV> | ValidatorResultArrays
 
 type ValidatorResultTemplate<SimpleType, NestedType> = {
   items?: SimpleType
   nested?: NestedType
 }
 
-export type ValidatorResultObjects<TV> =
+export type ValidatorResultObjects<TV extends Record<string, any>> =
   ValidatorResultTemplate<
     ValidatorSimpleResult[],
     ValidatorComplexResultObjects<TV>

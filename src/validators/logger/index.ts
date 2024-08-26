@@ -1,13 +1,21 @@
-const info = (tag: string, log: boolean, ...data: any[]) => {
-  if (log) console.log(tag, "::", ...data)
-}
+const timestamp = () => new Date().toISOString();
 
-const warn = (tag: string, log: boolean, ...data: any[]) => {
-  if (log) console.warn(tag, "::", ...data)
-}
+type LogLevel = "INFO" | "WARNING" | "ERROR"
 
-const error = (tag: string, log: boolean, ...data: any[]) => {
-  if (log) console.error(tag, "::", ...data)
-}
+const prefix = (level: LogLevel, tag: string) => `[${timestamp()}] [@bshg/validation] [${level}] [${tag}]`;
 
-export default {info, warn, error}
+const info = (tag: string, log?: boolean, ...data: any[]) => {
+  if (log) console.log(prefix("INFO", tag), ...data);
+};
+
+const warn = (tag: string, log?: boolean, ...data: any[]) => {
+  if (log) console.warn(prefix("WARNING", tag), ...data);
+};
+
+const error = (tag: string, log?: boolean, ...data: any[]) => {
+  if (log) console.error(prefix("ERROR", tag), ...data);
+};
+
+export default { info, warn, error };
+
+export const LOGGER = { info, warn, error };

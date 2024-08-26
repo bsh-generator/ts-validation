@@ -3,7 +3,14 @@
 
 ## Previous Releases
 
-### 0.5.3
+### 0.5.6
+
+- add validator status to define the status of the validator after being executed [#commet](https://github.com/bsh-generator/bshg_validation_ts/tree/7901e77f88f88bf047af7ff9dc78a62363d39abb)
+- update the loggers [#commet](https://github.com/bsh-generator/bshg_validation_ts/tree/a8476b8b069e5eeab001203c464e13a45401ccd2)
+- start using tests in the library
+- Simplify Access to Validation Status and Messages [#2](https://github.com/bsh-generator/bshg_validation_ts/issues/2)
+
+### 0.5.5
 
 - address the issue with import and fix it [#1](https://github.com/bsh-generator/bshg_validation_ts/issues/1)
 
