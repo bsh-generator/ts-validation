@@ -1,12 +1,10 @@
 name: Release
-
 on:
   push:
     branches:
       - main
     paths:
       - package.json
-
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -14,7 +12,6 @@ jobs:
       contents: write
       pull-requests: read
       id-token: write
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,9 +24,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Uncomment to run tests
-      # - name: Run tests
-      #   run: npm test
+      - name: Run tests
+        run: npm test
 
       - name: Build project
         run: npm run build
@@ -41,3 +37,13 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
           dry-run: false
           provenance: true
+
+      - name: Create GitHub Release
+        if: steps.publish.outputs.type != 'none'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          NEW_VERSION=$(node -p "require('./package.json').version")
+          gh release create v$NEW_VERSION \
+            --title "Release v$NEW_VERSION" \
+            --generate-notes
