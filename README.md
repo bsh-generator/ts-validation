@@ -664,6 +664,34 @@ You can choose between `.init()` and `.validate(object)` based on your validatio
 
 By leveraging these methods (`validate()`, `validateInfo()`, and `validateThrow()`), you can implement a robust and adaptable validation strategy that meets your application's validation requirements effectively.
 
+## Access The Validation status
+
+### `validateItem(fieldName: string): void`
+Triggers validation for the specified field.
+
+**Usage:**
+```javascript
+validator.validateItem('email');
+```
+
+### `itemMessage(fieldName: string): string | undefined`
+Retrieves the validation message for the specified field.
+
+**Usage:**
+```javascript
+const emailMessage = validator.itemMessage('email');
+```
+
+### `isItemValid(fieldName: string): boolean | undefined`
+Checks if the specified field is valid.
+
+**Usage:**
+```javascript
+const isEmailValid = validator.isItemValid('email');
+```
+
+These methods provide a simpler and more intuitive way to access validation results. They replace the need for deep property access, making your code cleaner and easier to maintain. The existing methods remain available for backward compatibility.
+
 ## How To Use Real-Time Validation?
 
 Real-time validation is crucial for validating objects as they change dynamically, such as in user interfaces. This section outlines how to achieve real-time validation using the `init()` method to track object changes and validate individual properties using the Validator library.
@@ -726,8 +754,9 @@ Real-time validation is crucial for validating objects as they change dynamicall
 
 You can validate a single property using the validator's:
 
-- `items.<property name>.validate()` method
-- `nested.<nested property name>.items.<property name>.validate()` method.
+- `items.<property-name>.validate()` method
+- `nested.<nested-property-name>.items.<property-name>.validate()` method.
+- `.validateItem('property-name')`
 
 This allows you to validate specific fields as they are updated in the UI:
 
@@ -1304,22 +1333,9 @@ Localization is essential for providing error messages and validation feedback i
 
 By overriding the localization settings, you can ensure that validation messages are displayed in the appropriate language for your users. This enhances the user experience and helps improve accessibility for a global audience.
 
-## What is New?
+## What is New in 0.5.5
 
-- **Improved Documentation**: Enhanced clarity and comprehensiveness in the documentation, making it easier to understand and implement the validation library.
-
-- **Async Validation**:
-    - Introduced support for asynchronous validation rules using the `onErrorAsync()` method, enabling validation logic that involves asynchronous operations such as API calls.
-    - Async batch validations, enabling the validation of multiple objects with async rules.
-
-- **Context Validation Feature**:
-    - Added the ability to alter validation behavior based on additional context information, providing more flexibility and customization in validation rules.
-    - Validations based on context, allowing dynamic validation rules tailored to see extra information.
-
-- **Unified Error Message Property**:
-    - Replaced separate properties for string and function messages with a single `message` property that accepts both types.
-    - instead of `errorMsg: string` and `errorMsgFn: () => string` you can now use `message: string | (() => string)`
-
-- **Bug Fixes**:
-    - Addressed various issues to improve the stability and performance of the validation library.
-    - Improved date comparison logic.
+- add validator status to define the status of the validator after being executed [#commet](https://github.com/bsh-generator/bshg_validation_ts/tree/7901e77f88f88bf047af7ff9dc78a62363d39abb)
+- update the loggers [#commet](https://github.com/bsh-generator/bshg_validation_ts/tree/a8476b8b069e5eeab001203c464e13a45401ccd2)
+- start using tests in the library
+- Simplify Access to Validation Status and Messages [#2](https://github.com/bsh-generator/bshg_validation_ts/issues/2)
