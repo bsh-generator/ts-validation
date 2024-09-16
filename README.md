@@ -1,6 +1,6 @@
 # @bshg/validation
 
-visit our docs site: [bshg docs](bshg-libs.vercel.app/ts-validation)
+visit our docs site: [Bshg Docs](https://bshg-libs.vercel.app/ts-validation)
 ---
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
