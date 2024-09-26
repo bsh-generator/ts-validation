@@ -3,7 +3,7 @@
 
 ## Previous Releases
 
-### 0.5.6
+### 0.6.0
 
 - add validator status to define the status of the validator after being executed [#commet](https://github.com/bsh-generator/bshg_validation_ts/tree/7901e77f88f88bf047af7ff9dc78a62363d39abb)
 - update the loggers [#commet](https://github.com/bsh-generator/bshg_validation_ts/tree/a8476b8b069e5eeab001203c464e13a45401ccd2)
