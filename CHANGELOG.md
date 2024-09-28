@@ -3,6 +3,22 @@
 
 ## Previous Releases
 
+### 0.6.5
+
+- introduce inline validator, to validate primitive values:
+````ts
+import {v, m} from 'src'
+
+const emailValidator = v.string().required().email().build();
+
+emailValidator.apply("test.com")
+
+console.log(emailValidator.valid) // false
+console.log(emailValidator.message) // Invalid email format
+````
+
+- fix some bugs
+
 ### 0.6.0
 
 - add validator status to define the status of the validator after being executed [#commet](https://github.com/bsh-generator/bshg_validation_ts/tree/7901e77f88f88bf047af7ff9dc78a62363d39abb)

@@ -8,6 +8,7 @@ import {
   ValidatorFnDependConfigCtx,
   ValidatorFnDependConfigCtxAsync,
 } from "../utils";
+import {ValidatorItem} from "../main";
 
 export const messageVars = {
   prefix: '%',
@@ -125,6 +126,16 @@ export class TypeValidator<T> {
       this.validationsCtxAsync.push(config as ValidatorFnConfigCtxAsync<T>);
     }
     return this;
+  }
+
+  /**
+   * build validator for single type (string | number | ...)
+   */
+  // TODO make this works with TypeValidatorWithContext
+  build(): ValidatorItem<T, any> {
+    const vi = new ValidatorItem<T, any>();
+    vi.setValidations(this);
+    return vi;
   }
 }
 

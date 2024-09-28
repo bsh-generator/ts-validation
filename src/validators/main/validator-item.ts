@@ -55,7 +55,7 @@ export class ValidatorItem<T, TC extends Record<string, any>> {
   }
 
   #onChange() {
-    this.validator.onChangeEvent && this.validator.onChangeEvent(this.container())
+    this.validator?.onChangeEvent && this.validator.onChangeEvent(this.container())
   }
 
   reset() {
@@ -74,7 +74,9 @@ export class ValidatorItem<T, TC extends Record<string, any>> {
 
   /**
    * @deprecated
+   * replaced with `markAsError`
    * @param msg
+   * @see #markAsError
    */
   error(msg: string) {
     this.markAsError(msg)
@@ -84,6 +86,12 @@ export class ValidatorItem<T, TC extends Record<string, any>> {
     this.valid = true;
     this.message = undefined;
     this.#onChange()
+  }
+
+  apply(value: T): { status?: boolean, err?: string } {
+    this.get = () => value
+    this.validate()
+    return {status: this.valid, err: this.message}
   }
 
   validate = () => {
