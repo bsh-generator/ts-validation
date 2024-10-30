@@ -1,3 +1,3 @@
-export {regex} from './regex'
-export * from './types'
-export * from './types-utils'
+export { regex } from "./regex";
+export * from "./types";
+export * from "./types-utils";

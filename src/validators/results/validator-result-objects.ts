@@ -1,14 +1,14 @@
-import { ValidatorComplexResultObjects } from "../utils";
+import { Primitive } from "../utils";
 
 export type ValidatorResult<TV extends Record<string, any> = any> = ValidatorResultObjects<TV> | ValidatorResultArrays
 
-type ValidatorResultTemplate<SimpleType, NestedType> = {
+type ValidatorResultBase<SimpleType, NestedType> = {
   items?: SimpleType
   nested?: NestedType
 }
 
 export type ValidatorResultObjects<TV extends Record<string, any>> =
-  ValidatorResultTemplate<
+  ValidatorResultBase<
     ValidatorSimpleResult[],
     ValidatorComplexResultObjects<TV>
   >
@@ -20,10 +20,20 @@ export type ValidatorSimpleResult<T = any> = {
   message?: string
 }
 
+export type ValidatorComplexResultObjects<T extends Record<string, any>> = {
+  [k in keyof T as T[k] extends Primitive
+    ? never
+    : T[k] extends infer U | undefined
+      ? U extends Primitive
+        ? never
+        : k
+      : k]?: ValidatorResultObjects<T[k]>;
+}
+
 //////////////////////
 
 export type ValidatorResultArrays =
-  ValidatorResultTemplate<
+  ValidatorResultBase<
     ValidatorSimpleResult[],
     ValidatorComplexResultVFieldName[]
   >

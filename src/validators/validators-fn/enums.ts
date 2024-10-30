@@ -1,4 +1,4 @@
-import {FnConfig, TypeValidator} from "./base";
+import { FnConfig, TypeValidator } from "./base";
 
 export class Enums<T extends number | string | undefined> extends TypeValidator<T> {
   in(values: T[], options?: FnConfig): Enums<T> {
@@ -6,7 +6,7 @@ export class Enums<T extends number | string | undefined> extends TypeValidator<
       error: value => value !== undefined && !values.includes(value),
       message: `Value must be one of %1`,
       options: options,
-      args: [values]
+      args: [values],
     });
   }
 
@@ -15,7 +15,7 @@ export class Enums<T extends number | string | undefined> extends TypeValidator<
       error: value => value !== undefined && values.includes(value),
       message: `Value must not be one of %1`,
       options: options,
-      args: [values]
+      args: [values],
     });
   }
 
@@ -24,7 +24,7 @@ export class Enums<T extends number | string | undefined> extends TypeValidator<
       error: value => value !== compareValue,
       message: `Value must be equal to %1`,
       options: options,
-      args: [compareValue]
+      args: [compareValue],
     });
   }
 
@@ -33,7 +33,7 @@ export class Enums<T extends number | string | undefined> extends TypeValidator<
       error: value => value === compareValue,
       message: `Value must not be equal to %1`,
       options: options,
-      args: [compareValue]
+      args: [compareValue],
     });
   }
 }

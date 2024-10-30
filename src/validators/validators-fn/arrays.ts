@@ -1,11 +1,11 @@
-import {FnConfig, TypeValidator} from "./base";
-import {CurrentLocalize} from "../messages";
+import { FnConfig, TypeValidator } from "./base";
+import { CurrentLocalize } from "../messages";
 
-const msgs = () => CurrentLocalize.array
+const msgs = () => CurrentLocalize.array;
 
 export class Arrays<T, TA extends Array<T> | undefined> extends TypeValidator<TA> {
   undefined(): Arrays<T, TA | undefined> {
-    return new Arrays<T, TA | undefined>()
+    return new Arrays<T, TA | undefined>();
   }
 
   length(length: number, options?: FnConfig): Arrays<T, TA> {
@@ -13,7 +13,7 @@ export class Arrays<T, TA extends Array<T> | undefined> extends TypeValidator<TA
       error: value => value !== undefined && value.length !== length,
       message: msgs().length,
       options: options,
-      args: [length]
+      args: [length],
     });
   }
 
@@ -22,7 +22,7 @@ export class Arrays<T, TA extends Array<T> | undefined> extends TypeValidator<TA
       error: value => value !== undefined && value.length < length,
       message: msgs().min,
       options: options,
-      args: [length]
+      args: [length],
     });
   }
 
@@ -31,7 +31,7 @@ export class Arrays<T, TA extends Array<T> | undefined> extends TypeValidator<TA
       error: value => value !== undefined && value.length > length,
       message: msgs().max,
       options: options,
-      args: [length]
+      args: [length],
     });
   }
 
@@ -40,7 +40,7 @@ export class Arrays<T, TA extends Array<T> | undefined> extends TypeValidator<TA
       error: (array) => array !== undefined && !array.includes(value),
       message: msgs().has,
       options: options,
-      args: [value]
+      args: [value],
     });
   }
 
@@ -49,7 +49,7 @@ export class Arrays<T, TA extends Array<T> | undefined> extends TypeValidator<TA
       error: (array) => array !== undefined && !values.every(value => array.includes(value)),
       message: msgs().hasAll,
       options: options,
-      args: [values.join(", ")]
+      args: [values.join(", ")],
     });
   }
 
@@ -58,7 +58,7 @@ export class Arrays<T, TA extends Array<T> | undefined> extends TypeValidator<TA
       error: (array) => array !== undefined && values.some(value => array.includes(value)),
       message: msgs().hasAny,
       options: options,
-      args: [values.join(", ")]
+      args: [values.join(", ")],
     });
   }
 
@@ -67,7 +67,7 @@ export class Arrays<T, TA extends Array<T> | undefined> extends TypeValidator<TA
       error: (array) => array !== undefined && values.every(value => !array.includes(value)),
       message: msgs().hasNone,
       options: options,
-      args: [values.join(", ")]
+      args: [values.join(", ")],
     });
   }
 
@@ -75,7 +75,7 @@ export class Arrays<T, TA extends Array<T> | undefined> extends TypeValidator<TA
     return this.useCostume({
       error: (array) => array !== undefined && array.some(predicate),
       message: msgs().some,
-      options: options
+      options: options,
     });
   }
 
@@ -83,7 +83,7 @@ export class Arrays<T, TA extends Array<T> | undefined> extends TypeValidator<TA
     return this.useCostume({
       error: (array) => array !== undefined && array.every(predicate),
       message: msgs().every,
-      options: options
+      options: options,
     });
   }
 }

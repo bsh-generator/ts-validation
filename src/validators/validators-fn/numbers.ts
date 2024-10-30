@@ -1,12 +1,12 @@
-import {FnConfig, TypeValidator} from "./base";
-import {KeysOfType} from "../utils";
-import {CurrentLocalize} from "../messages";
+import { FnConfig, TypeValidator } from "./base";
+import { KeysOfType } from "../utils";
+import { CurrentLocalize } from "../messages";
 
-const msgs = () => CurrentLocalize.number
+const msgs = () => CurrentLocalize.number;
 
 export class Numbers<T extends number | undefined = number> extends TypeValidator<T> {
   undefined(): Numbers<T | undefined> {
-    return new Numbers<T | undefined>()
+    return new Numbers<T | undefined>();
   }
 
   required(options?: FnConfig): Numbers<T> {
@@ -22,7 +22,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
       error: value => value !== undefined && value < minValue,
       message: msgs().min,
       options: options,
-      args: [minValue]
+      args: [minValue],
     });
   }
 
@@ -31,7 +31,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
       error: value => value !== undefined && value > maxValue,
       message: msgs().max,
       options: options,
-      args: [maxValue]
+      args: [maxValue],
     });
   }
 
@@ -40,7 +40,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
       error: value => value !== undefined && (value < minValue || value > maxValue),
       message: msgs().range,
       options: options,
-      args: [minValue, maxValue]
+      args: [minValue, maxValue],
     });
   }
 
@@ -48,23 +48,23 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
     return this.useCostume({
       error: value => value !== undefined && !Number.isInteger(value),
       message: msgs().integer,
-      options: options
+      options: options,
     });
   }
 
   positive(options?: FnConfig): Numbers<T> {
-    return this.min(0, {...options, message: options?.message || msgs().positive});
+    return this.min(0, { ...options, message: options?.message || msgs().positive });
   }
 
   negative(options?: FnConfig): Numbers<T> {
-    return this.max(0, {...options, message: options?.message || msgs().negative});
+    return this.max(0, { ...options, message: options?.message || msgs().negative });
   }
 
   decimal(options?: FnConfig): Numbers<T> {
     return this.useCostume({
       error: value => value !== undefined && Number.isInteger(value),
       message: msgs().decimal,
-      options: options
+      options: options,
     });
   }
 
@@ -73,7 +73,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
       error: value => value !== undefined && value % divisor !== 0,
       message: msgs().multipleOf,
       options: options,
-      args: [divisor]
+      args: [divisor],
     });
   }
 
@@ -82,7 +82,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
       error: value => value !== undefined && (value <= minValue || value >= maxValue),
       message: msgs().betweenExclusive,
       options: options,
-      args: [minValue, maxValue]
+      args: [minValue, maxValue],
     });
   }
 
@@ -90,7 +90,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
     return this.useCostume({
       error: value => value !== undefined && value % 2 !== 0,
       message: msgs().even,
-      options: options
+      options: options,
     });
   }
 
@@ -98,7 +98,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
     return this.useCostume({
       error: value => value !== undefined && value % 2 === 0,
       message: msgs().odd,
-      options: options
+      options: options,
     });
   }
 
@@ -106,7 +106,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
     return this.useCostume({
       error: value => value !== undefined && (!Number.isInteger(value) || value <= 0),
       message: msgs().positiveInteger,
-      options: options
+      options: options,
     });
   }
 
@@ -114,7 +114,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
     return this.useCostume({
       error: value => value !== undefined && (!Number.isInteger(value) || value >= 0),
       message: msgs().negativeInteger,
-      options: options
+      options: options,
     });
   }
 
@@ -122,7 +122,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
     return this.useCostume({
       error: value => value !== undefined && (Number.isInteger(value) || value <= 0),
       message: msgs().positiveDecimal,
-      options: options
+      options: options,
     });
   }
 
@@ -130,7 +130,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
     return this.useCostume({
       error: value => value !== undefined && (Number.isInteger(value) || value >= 0),
       message: msgs().negativeDecimal,
-      options: options
+      options: options,
     });
   }
 
@@ -139,7 +139,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
       error: value => value !== undefined && !Number.isInteger(value / divisor),
       message: msgs().divisibleBy,
       options: options,
-      args: [divisor]
+      args: [divisor],
     });
   }
 
@@ -147,7 +147,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
     return this.useCostume({
       error: value => value !== undefined && !Number.isInteger(Math.sqrt(value)),
       message: msgs().perfectSquare,
-      options: options
+      options: options,
     });
   }
 
@@ -161,7 +161,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
         return false;
       },
       message: msgs().primeNumber,
-      options: options
+      options: options,
     });
   }
 
@@ -178,7 +178,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
         return b !== value;
       },
       message: msgs().fibonacciNumber,
-      options: options
+      options: options,
     });
   }
 
@@ -186,7 +186,7 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
     return this.useCostume({
       error: value => value !== undefined && (value & (value - 1)) !== 0,
       message: msgs().powerOfTwo,
-      options: options
+      options: options,
     });
   }
 
@@ -197,6 +197,6 @@ export class Numbers<T extends number | undefined = number> extends TypeValidato
       message: msgs().as,
       options: options,
       args: [key],
-    })
+    });
   }
 }

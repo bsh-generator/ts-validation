@@ -1,6 +1,7 @@
 import {
   BshBatchValidationError,
   BshValidationError,
+  ValidatorComplexResultObjects,
   ValidatorComplexResultVFieldName,
   ValidatorResult,
   ValidatorResultArrays,
@@ -12,7 +13,6 @@ import {
   BatchValidatorResultInfo,
   ExtractNonPrimitiveKeys,
   NestedType,
-  ValidatorComplexResultObjects,
   ValidatorConfig,
   ValidatorOptions,
   ValidatorResultInfo,

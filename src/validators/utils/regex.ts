@@ -13,7 +13,7 @@ export const regex = {
   CREDIT_CARD: /^(?:3[47]\d{2}([\s-]?)\d{6}\1\d{5}|(?:4\d|5[1-5]|65)\d{2}\d{5}\d{4}|6011([\s-]?)\d{4}\d{4}\d{4})$/,
   HTML_TAG: /<("[^"]*"|'[^']*'|[^'">])*>/,
   BASE64: /[^A-Za-z0-9+/=]/,
-}
+};
 
 export type RegexType = {
   [k in keyof typeof regex]: RegExp
@@ -27,8 +27,8 @@ export const updateRegex = (newRegex: Partial<RegexType>) => {
         if (newValue != undefined)
           regex[key as keyof RegexType] = newValue;
       } else {
-        LOGGER.warn('updateRegex', true, `Regex key '${key}' does not exist.`);
+        LOGGER.warn("updateRegex", true, `Regex key '${key}' does not exist.`);
       }
     }
   }
-}
+};

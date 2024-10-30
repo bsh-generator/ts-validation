@@ -1,4 +1,4 @@
-import {ErrorMessage} from "./index";
+import { ErrorMessage } from "./index";
 
 export const en: ErrorMessage = {
   noMessage: "No Error Message Was Provided!",
@@ -7,10 +7,10 @@ export const en: ErrorMessage = {
     notEmpty: "This field is required!",
     min: "Minimum length required is %1",
     max: "Maximum length allowed is %1",
-    includes: 'Must include "%1"',
-    includesAll: 'Must include all of: %1',
-    startsWith: 'Must start with "%1"',
-    endsWith: 'Must end with "%1"',
+    includes: "Must include \"%1\"",
+    includesAll: "Must include all of: %1",
+    startsWith: "Must start with \"%1\"",
+    endsWith: "Must end with \"%1\"",
     matches: "Does not match the required pattern",
     email: "Invalid email format",
     phone: "Invalid phone format",
@@ -24,7 +24,7 @@ export const en: ErrorMessage = {
     alphanumeric: "Must contain only alphanumeric characters",
     numeric: "Must contain only numeric characters",
     alpha: "Must contain only alphabetic characters",
-    as: "Value must be as '%1'"
+    as: "Value must be as '%1'",
   },
   number: {
     required: "This field is required!",
@@ -48,14 +48,14 @@ export const en: ErrorMessage = {
     primeNumber: "Value must be a prime number",
     fibonacciNumber: "Value must be a Fibonacci number",
     powerOfTwo: "Value must be a power of two",
-    as: "value must be as '%1'"
+    as: "value must be as '%1'",
   },
   boolean: {
     required: "This field is required!",
     true: "Value must be true",
     false: "Value must be false",
     equals: "Value must be equal to %1",
-    as: "value must be as '%1'"
+    as: "value must be as '%1'",
   },
   array: {
     length: "Value must be of length %1",
@@ -66,7 +66,7 @@ export const en: ErrorMessage = {
     hasAny: "Value must include any of: %1",
     hasNone: "Value must include none of: %1",
     some: "Array does not match the given predicate!",
-    every: "Array does not match the given predicate!"
+    every: "Array does not match the given predicate!",
   },
   datetime: {
     required: "This field is required!",
@@ -80,7 +80,7 @@ export const en: ErrorMessage = {
     future: "DateTime must be in the future",
     weekday: "DateTime must be a weekday",
     weekend: "DateTime must be a weekend",
-    as: "Value must be as '%1'"
+    as: "Value must be as '%1'",
   },
   date: {
     required: "This field is required!",
@@ -96,7 +96,7 @@ export const en: ErrorMessage = {
     weekend: "Date must be a weekend",
     leapYear: "Date must be in a leap year",
     sameDayAs: "Date must be the same day as %1",
-    as: "value must be as '%1'"
+    as: "value must be as '%1'",
   },
   time: {
     required: "This field is required!",
@@ -109,6 +109,6 @@ export const en: ErrorMessage = {
     past: "Time must be in the past",
     future: "Time must be in the future",
     within24Hours: "Time must be within the next 24 hours",
-    as: "value must be as '%1'"
-  }
-}
+    as: "value must be as '%1'",
+  },
+};

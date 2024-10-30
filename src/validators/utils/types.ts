@@ -1,7 +1,7 @@
-import {Validator, ValidatorTemplate} from '../main';
-import {TypeValidator} from '../validators-fn';
-import { ValidatorResult, ValidatorResultObjects } from "../results";
-import {TypeValidatorWithContext} from "../validators-fn/base";
+import { Validator, ValidatorTemplate } from "../main";
+import { TypeValidator } from "../validators-fn";
+import { ValidatorResult } from "../results";
+import { TypeValidatorWithContext } from "../validators-fn/base";
 import { Primitive } from "./types-utils";
 
 export type BaseValidatorFnConfig<TError = any> = {
@@ -36,16 +36,12 @@ export type BatchValidatorResultInfo = { success: boolean, results: ValidatorRes
 /////////////////
 export type ValidatorOptions = {
   dev?: boolean
-  resultsType?: 'array' | 'object' // TODO: remove this and replace it with more meaning way ?
+  resultsType?: "array" | "object" // TODO: remove this and replace it with more meaning way ?
 }
 
 export type ItemType<T, TContext extends Record<string, any>> = {
   [K in keyof T]?: TypeValidator<T[K]> | TypeValidatorWithContext<T[K], TContext>[]
 }
-
-// export type NestedType<T extends Record<string, any>> = NonSimpleValues<T> extends {
-//   [K in keyof NonSimpleValues<T>]: Validator<NonSimpleValues<T>[K]>;
-// } ? { [K in NonSimpleKeys<T>]?: Validator<NonSimpleValues<T>[K]> } : never;
 
 export type NestedType<T extends Record<string, any>, TContext extends Record<string, any>> = {
   [k in keyof T as T[k] extends Primitive
@@ -57,10 +53,6 @@ export type NestedType<T extends Record<string, any>, TContext extends Record<st
       : k]?: Validator<T[k], TContext>;
 }
 
-// export type TemplateNestedType<T extends Record<string, any>, TContext extends Record<string, any>> = NonSimpleValues<T> extends {
-//   [K in keyof NonSimpleValues<T>]: ValidatorTemplate<NonSimpleValues<T>[K], TContext>;
-// } ? { [K in NonSimpleKeys<T>]?: ValidatorTemplate<NonSimpleValues<T>[K], TContext> } : never;
-
 export type TemplateNestedType<T extends Record<string, any>, TContext extends Record<string, any>> = {
   [k in keyof T as T[k] extends Primitive
     ? never
@@ -69,20 +61,6 @@ export type TemplateNestedType<T extends Record<string, any>, TContext extends R
         ? never
         : k
       : k]?: ValidatorTemplate<T[k], TContext>;
-}
-
-// export type ValidatorComplexResultObjects<TV> = NonSimpleValues<TV> extends {
-//   [K in keyof NonSimpleValues<TV>]: ValidatorResultObjects<NonSimpleValues<TV>[K]>;
-// } ? { [K in NonSimpleKeys<TV>]?: ValidatorResultObjects<NonSimpleValues<TV>[K]> } : never;
-
-export type ValidatorComplexResultObjects<T extends Record<string, any>> = {
-  [k in keyof T as T[k] extends Primitive
-    ? never
-    : T[k] extends infer U | undefined
-      ? U extends Primitive
-        ? never
-        : k
-      : k]?: ValidatorResultObjects<T[k]>;
 }
 
 ////
