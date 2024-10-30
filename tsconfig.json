@@ -4,7 +4,9 @@
     "outDir": "../lib",
     "baseUrl": "./",
     "paths": {
-      "@bshg/validation": ["./src"]
+      "@bshg/validation": [
+        "./src"
+      ]
     }
   }
 }

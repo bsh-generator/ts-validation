@@ -1,12 +1,12 @@
-import {FnConfig, TypeValidator} from "./base";
-import {KeysOfType} from "../utils";
-import {CurrentLocalize} from "../messages";
+import { FnConfig, TypeValidator } from "./base";
+import { KeysOfType } from "../utils";
+import { CurrentLocalize } from "../messages";
 
-const msgs = () => CurrentLocalize.boolean
+const msgs = () => CurrentLocalize.boolean;
 
 export class Booleans<T extends boolean | undefined = boolean> extends TypeValidator<T> {
-  undefined(): Booleans<T | undefined>{
-    return new Booleans<T | undefined>()
+  undefined(): Booleans<T | undefined> {
+    return new Booleans<T | undefined>();
   }
 
   required(options?: FnConfig): Booleans<T> {
@@ -21,7 +21,7 @@ export class Booleans<T extends boolean | undefined = boolean> extends TypeValid
     return this.useCostume({
       error: value => value !== true,
       message: msgs().true,
-      options: options
+      options: options,
     });
   }
 
@@ -29,7 +29,7 @@ export class Booleans<T extends boolean | undefined = boolean> extends TypeValid
     return this.useCostume({
       error: value => value !== false,
       message: msgs().false,
-      options: options
+      options: options,
     });
   }
 
@@ -38,7 +38,7 @@ export class Booleans<T extends boolean | undefined = boolean> extends TypeValid
       error: value => value !== compareValue,
       message: msgs().equals,
       options: options,
-      args: [compareValue]
+      args: [compareValue],
     });
   }
 
@@ -49,6 +49,6 @@ export class Booleans<T extends boolean | undefined = boolean> extends TypeValid
       message: msgs().as,
       options: options,
       args: [key],
-    })
+    });
   }
 }

@@ -7,10 +7,10 @@ export const fr: ErrorMessage = {
     notEmpty: "Ce champ ne peut pas être vide !",
     min: "La longueur minimale requise est de %1",
     max: "La longueur maximale autorisée est de %1",
-    includes: 'Doit inclure "%1"',
-    includesAll: 'Doit inclure tous : %1',
-    startsWith: 'Doit commencer par "%1"',
-    endsWith: 'Doit se terminer par "%1"',
+    includes: "Doit inclure \"%1\"",
+    includesAll: "Doit inclure tous : %1",
+    startsWith: "Doit commencer par \"%1\"",
+    endsWith: "Doit se terminer par \"%1\"",
     matches: "Ne correspond pas au modèle requis",
     email: "Format d'email invalide",
     phone: "Format de téléphone invalide",
@@ -24,7 +24,7 @@ export const fr: ErrorMessage = {
     alphanumeric: "Doit contenir uniquement des caractères alphanumériques",
     numeric: "Doit contenir uniquement des caractères numériques",
     alpha: "Doit contenir uniquement des caractères alphabétiques",
-    as: "La valeur doit être comme '%1'"
+    as: "La valeur doit être comme '%1'",
   },
   number: {
     required: "Ce champ est requis !",
@@ -48,14 +48,14 @@ export const fr: ErrorMessage = {
     primeNumber: "La valeur doit être un nombre premier",
     fibonacciNumber: "La valeur doit être un nombre de Fibonacci",
     powerOfTwo: "La valeur doit être une puissance de deux",
-    as: "La valeur doit être comme '%1'"
+    as: "La valeur doit être comme '%1'",
   },
   boolean: {
     required: "Ce champ est requis !",
     true: "La valeur doit être vrai",
     false: "La valeur doit être faux",
     equals: "La valeur doit être égale à %1",
-    as: "La valeur doit être comme '%1'"
+    as: "La valeur doit être comme '%1'",
   },
   array: {
     length: "La valeur doit avoir une longueur de %1",
@@ -66,7 +66,7 @@ export const fr: ErrorMessage = {
     hasAny: "La valeur doit inclure n'importe lequel de : %1",
     hasNone: "La valeur ne doit inclure aucun de : %1",
     some: "Le tableau ne correspond pas au prédicat donné",
-    every: "Le tableau ne correspond pas au prédicat donné"
+    every: "Le tableau ne correspond pas au prédicat donné",
   },
   datetime: {
     required: "Ce champ est requis !",
@@ -80,7 +80,7 @@ export const fr: ErrorMessage = {
     future: "La date et l'heure doivent être dans le futur",
     weekday: "La date et l'heure doivent être un jour de semaine",
     weekend: "La date et l'heure doivent être un jour de week-end",
-    as: "La valeur doit être comme '%1'"
+    as: "La valeur doit être comme '%1'",
   },
   date: {
     required: "Ce champ est requis !",
@@ -96,7 +96,7 @@ export const fr: ErrorMessage = {
     weekend: "La date doit être un jour de week-end",
     leapYear: "La date doit être dans une année bissextile",
     sameDayAs: "La date doit être le même jour que %1",
-    as: "La valeur doit être comme '%1'"
+    as: "La valeur doit être comme '%1'",
   },
   time: {
     required: "Ce champ est requis !",
@@ -109,6 +109,6 @@ export const fr: ErrorMessage = {
     past: "L'heure doit être dans le passé",
     future: "L'heure doit être dans le futur",
     within24Hours: "L'heure doit être dans les 24 prochaines heures",
-    as: "La valeur doit être comme '%1'"
-  }
-}
+    as: "La valeur doit être comme '%1'",
+  },
+};

@@ -2,7 +2,9 @@
 
 ## Our Pledge
 
-We as members, contributors, and maintainers pledge to make participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion.
+We as members, contributors, and maintainers pledge to make participation in our project and our community a
+harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and
+expression, level of experience, nationality, personal appearance, race, religion.
 
 ## Our Standards
 
@@ -114,6 +116,9 @@ For answers to common questions about this code of conduct, see the FAQ at
 [https://www.contributor-covenant.org/translations][translations].
 
 [homepage]: https://www.contributor-covenant.org
+
 [v2.1]: https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
+
 [faq]: https://www.contributor-covenant.org/faq
+
 [translations]: https://www.contributor-covenant.org/translations

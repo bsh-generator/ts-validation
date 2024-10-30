@@ -1,4 +1,4 @@
-import {Primitive} from "../utils";
+import { Primitive } from "../utils";
 
 export type ValidatorResult<TV extends Record<string, any> = any> = ValidatorResultObjects<TV> | ValidatorResultArrays
 
@@ -22,12 +22,12 @@ export type ValidatorSimpleResult<T = any> = {
 
 export type ValidatorComplexResultObjects<T extends Record<string, any>> = {
   [k in keyof T as T[k] extends Primitive
-      ? never
-      : T[k] extends infer U | undefined
-          ? U extends Primitive
-              ? never
-              : k
-          : k]?: ValidatorResultObjects<T[k]>;
+    ? never
+    : T[k] extends infer U | undefined
+      ? U extends Primitive
+        ? never
+        : k
+      : k]?: ValidatorResultObjects<T[k]>;
 }
 
 //////////////////////

@@ -1,13 +1,13 @@
-import {FnConfig, TypeValidator} from "./base";
-import {KeysOfType} from "../utils";
-import {CurrentLocalize} from "../messages";
+import { FnConfig, TypeValidator } from "./base";
+import { KeysOfType } from "../utils";
+import { CurrentLocalize } from "../messages";
 
-const msgs = () => CurrentLocalize.datetime
-const toTimestamp = (date: Date): number => new Date(date).valueOf()
+const msgs = () => CurrentLocalize.datetime;
+const toTimestamp = (date: Date): number => new Date(date).valueOf();
 
 export class DateTimes<T extends Date | undefined = Date> extends TypeValidator<T> {
-  undefined(): DateTimes<T | undefined>{
-    return new DateTimes<T | undefined>()
+  undefined(): DateTimes<T | undefined> {
+    return new DateTimes<T | undefined>();
   }
 
   required(options?: FnConfig): DateTimes<T> {
@@ -23,7 +23,7 @@ export class DateTimes<T extends Date | undefined = Date> extends TypeValidator<
       error: value => value && toTimestamp(value) != toTimestamp(dateTime),
       message: msgs().equals,
       options: options,
-      args: [dateTime.toISOString()]
+      args: [dateTime.toISOString()],
     });
   }
 
@@ -32,7 +32,7 @@ export class DateTimes<T extends Date | undefined = Date> extends TypeValidator<
       error: value => value && toTimestamp(value) <= toTimestamp(dateTime),
       message: msgs().after,
       options: options,
-      args: [dateTime.toISOString()]
+      args: [dateTime.toISOString()],
     });
   }
 
@@ -41,7 +41,7 @@ export class DateTimes<T extends Date | undefined = Date> extends TypeValidator<
       error: value => value && toTimestamp(value) >= toTimestamp(dateTime),
       message: msgs().before,
       options: options,
-      args: [dateTime.toISOString()]
+      args: [dateTime.toISOString()],
     });
   }
 
@@ -50,7 +50,7 @@ export class DateTimes<T extends Date | undefined = Date> extends TypeValidator<
       error: value => value && (toTimestamp(value) < toTimestamp(start) || toTimestamp(value) > toTimestamp(end)),
       message: msgs().between,
       options: options,
-      args: [start.toISOString(), end.toISOString()]
+      args: [start.toISOString(), end.toISOString()],
     });
   }
 
@@ -73,18 +73,18 @@ export class DateTimes<T extends Date | undefined = Date> extends TypeValidator<
   }
 
   past(options?: FnConfig): DateTimes<T> {
-    return this.before(new Date(), {...options, message: options?.message || msgs().past});
+    return this.before(new Date(), { ...options, message: options?.message || msgs().past });
   }
 
   future(options?: FnConfig): DateTimes<T> {
-    return this.after(new Date(), {...options, message: options?.message || msgs().future});
+    return this.after(new Date(), { ...options, message: options?.message || msgs().future });
   }
 
   weekday(options?: FnConfig): DateTimes<T> {
     return this.useCostume({
       error: value => value && value.getDay() % 6 === 0, // 0 or 6 represent Sunday and Saturday
       message: msgs().weekday,
-      options: options
+      options: options,
     });
   }
 
@@ -92,7 +92,7 @@ export class DateTimes<T extends Date | undefined = Date> extends TypeValidator<
     return this.useCostume({
       error: value => value && value.getDay() % 6 !== 0, // 1-5 represent Monday to Friday
       message: msgs().weekend,
-      options: options
+      options: options,
     });
   }
 
@@ -103,6 +103,6 @@ export class DateTimes<T extends Date | undefined = Date> extends TypeValidator<
       message: msgs().as,
       options: options,
       args: [key],
-    })
+    });
   }
 }

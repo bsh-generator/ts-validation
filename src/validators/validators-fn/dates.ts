@@ -1,15 +1,15 @@
-import {FnConfig, TypeValidator} from "./base";
-import {KeysOfType} from "../utils";
-import {CurrentLocalize} from "../messages";
+import { FnConfig, TypeValidator } from "./base";
+import { KeysOfType } from "../utils";
+import { CurrentLocalize } from "../messages";
 
-const msgs = () => CurrentLocalize.date
+const msgs = () => CurrentLocalize.date;
 
-const toDate = (date: Date) => date.toISOString().slice(0, 10)
-const toTimestamp = (date: Date): number => new Date(date.getFullYear(), date.getMonth(), date.getDate()).valueOf()
+const toDate = (date: Date) => date.toISOString().slice(0, 10);
+const toTimestamp = (date: Date): number => new Date(date.getFullYear(), date.getMonth(), date.getDate()).valueOf();
 
 export class Dates<T extends Date | undefined = Date> extends TypeValidator<T> {
   undefined(): Dates<T | undefined> {
-    return new Dates<T | undefined>()
+    return new Dates<T | undefined>();
   }
 
   required(options?: FnConfig): Dates<T> {
@@ -25,7 +25,7 @@ export class Dates<T extends Date | undefined = Date> extends TypeValidator<T> {
       error: value => value !== undefined && toTimestamp(value) != toTimestamp(dateTime),
       message: msgs().equals,
       options: options,
-      args: [toDate(dateTime)]
+      args: [toDate(dateTime)],
     });
   }
 
@@ -34,7 +34,7 @@ export class Dates<T extends Date | undefined = Date> extends TypeValidator<T> {
       error: value => value !== undefined && toTimestamp(value) <= toTimestamp(date),
       message: msgs().after,
       options: options,
-      args: [toDate(date)]
+      args: [toDate(date)],
     });
   }
 
@@ -43,7 +43,7 @@ export class Dates<T extends Date | undefined = Date> extends TypeValidator<T> {
       error: value => value !== undefined && toTimestamp(value) >= toTimestamp(date),
       message: msgs().before,
       options: options,
-      args: [toDate(date)]
+      args: [toDate(date)],
     });
   }
 
@@ -52,7 +52,7 @@ export class Dates<T extends Date | undefined = Date> extends TypeValidator<T> {
       error: value => value !== undefined && (toTimestamp(value) < toTimestamp(start) || toTimestamp(value) > toTimestamp(end)),
       message: msgs().between,
       options: options,
-      args: [toDate(start), toDate(end)]
+      args: [toDate(start), toDate(end)],
     });
   }
 
@@ -62,7 +62,7 @@ export class Dates<T extends Date | undefined = Date> extends TypeValidator<T> {
     return this.useCostume({
       error: value => value !== undefined && toTimestamp(value) < toTimestamp(today),
       message: msgs().todayOrAfter,
-      options: options
+      options: options,
     });
   }
 
@@ -72,23 +72,23 @@ export class Dates<T extends Date | undefined = Date> extends TypeValidator<T> {
     return this.useCostume({
       error: value => value !== undefined && toTimestamp(value) > toTimestamp(today),
       message: msgs().todayOrBefore,
-      options: options
+      options: options,
     });
   }
 
   past(options?: FnConfig): Dates<T> {
-    return this.before(new Date(), {...options, message: options?.message || msgs().past});
+    return this.before(new Date(), { ...options, message: options?.message || msgs().past });
   }
 
   future(options?: FnConfig): Dates<T> {
-    return this.after(new Date(), {...options, message: options?.message || msgs().future});
+    return this.after(new Date(), { ...options, message: options?.message || msgs().future });
   }
 
   weekday(options?: FnConfig): Dates<T> {
     return this.useCostume({
       error: value => value !== undefined && value.getDay() % 6 === 0, // 0 or 6 represent Sunday and Saturday
       message: msgs().weekday,
-      options: options
+      options: options,
     });
   }
 
@@ -96,7 +96,7 @@ export class Dates<T extends Date | undefined = Date> extends TypeValidator<T> {
     return this.useCostume({
       error: value => value !== undefined && value.getDay() % 6 !== 0, // 1-5 represent Monday to Friday
       message: msgs().weekend,
-      options: options
+      options: options,
     });
   }
 
@@ -108,7 +108,7 @@ export class Dates<T extends Date | undefined = Date> extends TypeValidator<T> {
         value.getFullYear() % 400 === 0
       ),
       message: msgs().leapYear,
-      options: options
+      options: options,
     });
   }
 
@@ -117,7 +117,7 @@ export class Dates<T extends Date | undefined = Date> extends TypeValidator<T> {
       error: value => value !== undefined && toTimestamp(value) !== toTimestamp(date),
       message: msgs().sameDayAs,
       options: options,
-      args: [toDate(date)]
+      args: [toDate(date)],
     });
   }
 
@@ -128,6 +128,6 @@ export class Dates<T extends Date | undefined = Date> extends TypeValidator<T> {
       message: msgs().as,
       options: options,
       args: [key],
-    })
+    });
   }
 }

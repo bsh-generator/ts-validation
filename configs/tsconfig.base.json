@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
-    "lib": ["es5", "es6", "es7", "esnext", "dom"],
+    "lib": [
+      "es5",
+      "es6",
+      "es7",
+      "esnext",
+      "dom"
+    ],
     "target": "es2018",
     "removeComments": false,
     "esModuleInterop": true,
@@ -15,7 +21,10 @@
     "noFallthroughCasesInSwitch": true,
     "downlevelIteration": true,
     "isolatedModules": true,
-    "declaration": true,
+    "declaration": true
   },
-  "include": ["../src/**/*", "../playground.ts"]
+  "include": [
+    "../src/**/*",
+    "../playground.ts"
+  ]
 }

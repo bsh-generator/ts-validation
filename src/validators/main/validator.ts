@@ -1,6 +1,7 @@
 import {
   BshBatchValidationError,
-  BshValidationError, ValidatorComplexResultObjects,
+  BshValidationError,
+  ValidatorComplexResultObjects,
   ValidatorComplexResultVFieldName,
   ValidatorResult,
   ValidatorResultArrays,

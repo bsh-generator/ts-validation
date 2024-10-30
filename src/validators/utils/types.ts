@@ -1,7 +1,7 @@
-import {Validator, ValidatorTemplate} from '../main';
-import {TypeValidator} from '../validators-fn';
+import { Validator, ValidatorTemplate } from "../main";
+import { TypeValidator } from "../validators-fn";
 import { ValidatorResult } from "../results";
-import {TypeValidatorWithContext} from "../validators-fn/base";
+import { TypeValidatorWithContext } from "../validators-fn/base";
 import { Primitive } from "./types-utils";
 
 export type BaseValidatorFnConfig<TError = any> = {
@@ -36,7 +36,7 @@ export type BatchValidatorResultInfo = { success: boolean, results: ValidatorRes
 /////////////////
 export type ValidatorOptions = {
   dev?: boolean
-  resultsType?: 'array' | 'object' // TODO: remove this and replace it with more meaning way ?
+  resultsType?: "array" | "object" // TODO: remove this and replace it with more meaning way ?
 }
 
 export type ItemType<T, TContext extends Record<string, any>> = {

@@ -6,7 +6,9 @@ your contribution.
 
 ## Initial steps
 
-Before you start working on a contribution, create an issue describing what you want to build. It's possible someone else is already working on something similar, or perhaps there is a reason that feature isn't implemented. The maintainers will point you in the right direction.
+Before you start working on a contribution, create an issue describing what you want to build. It's possible someone
+else is already working on something similar, or perhaps there is a reason that feature isn't implemented. The
+maintainers will point you in the right direction.
 
 <!-- ## Submitting a Pull Request
 
@@ -33,7 +35,8 @@ The following steps will get you setup to contribute changes to this repo:
 
 5. implementing your feature.
 
-6. You can do some simple experimentation in [`playgrounds`](./playgrounds) - there you will find some ready project like angular, reactjs.
+6. You can do some simple experimentation in [`playgrounds`](./playgrounds) - there you will find some ready project
+   like angular, reactjs.
 
 7. run the [link-playgrounds.sh](link-playgrounds.sh) script to link the project with the library code.
 
